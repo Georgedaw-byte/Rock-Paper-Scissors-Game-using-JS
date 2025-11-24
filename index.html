@@ -4,8 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=`, initial-scale=1.0">
     <title>Document</title>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            margin: 0;
+            background-color: rgb(53, 53, 53);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin: auto;
+            /* background-color: beige; */
+            
+        }
+        button {
+            background-color: rgb(27, 27, 123);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: rgb(37, 37, 176);
+        }
+        .result-score {
+            justify-content: center;
+            display: flex;
+            gap: 300px;
+            margin-top: 100px;
+            /* background-color: red; */
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 25px;
+        }
+        .com-score {
+            margin-bottom: 10px;
+
+        }
+        .results {
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
-    <script src="script.js"></script>
+    <div class="result-score">
+    <div class="results">Results</div>
+    <div class="scores">
+        <div class="com-score">ComScore</div>
+        <div class="your-score">Your Score</div>
+    </div>
+    </div>
+    <div class="container">
+    <button class="rock">Rock</button>
+    <button class="paper">Paper</button>
+    <button class="scissors">Scissors</button>
+    </div>
+    <button class="reset" style="background-color: rgb(23, 23, 23);">Reset</button>
 </body>
 </html>

@@ -22,58 +22,93 @@ function getComputerChoice()
     }
 }
 
-function getHumanPrompt()
-{
-    let choice = prompt("Rock or Paper or Scissors");
-    return choice.toLowerCase();
-}
+// function getHumanPrompt()
+// {
+//     let choice = prompt("Rock or Paper or Scissors");
+//     return choice.toLowerCase();
+// }
 
 function playGame()
 {
+    const results = document.querySelector(".results")
+    const playerScore = document.querySelector(".your-score")
+    const comScore = document.querySelector(".com-score")
     function playRound(humanChoice, computerChoice)
 {
     if (humanChoice == "rock" && computerChoice == "paper")
     {
-        console.log("You lose! Paper beats rock");
+
+        results.textContent = "You lose! Paper beats rock";
+        results.style.backgroundColor = "red"
         computerScore++;
     }
     else if (humanChoice == "scissors" && computerChoice == "rock")
     {
-        console.log("You lose! Rock beats Scissors");
+        results.textContent = "You lose! Rock beats Scissors";
+        results.style.backgroundColor = "red"
         computerScore++;
     }
     else if (humanChoice == "paper" && computerChoice == "scissors")
     {
-        console.log("You lose! Scissors beats Paper");
+        results.textContent = "You lose! Scissors beats Paper";
+        results.style.backgroundColor = "red"
         computerScore++;
     }      
     else if (computerChoice == "paper" && humanChoice == "scissors")
     {
-        console.log("You Win! Scissors beats Paper");
+        results.textContent = "You Win! Scissors beats Paper";
+        results.style.backgroundColor = "blue"
         humanScore++;
     }   
     else if (computerChoice == "scissors" && humanChoice == "rock")
     {
-        console.log("You Win! Rock beats Scissors");
+        results.textContent = "You Win! Rock beats Scissors";
+        results.style.backgroundColor = "blue"
         humanScore++;
     }   
     else if (computerChoice == "rock" && humanChoice == "paper")
     {
-        console.log("You Win! Paper beats rock");
+        results.textContent = "You Win! Paper beats rock";
+        results.style.backgroundColor = "blue"
         humanScore++;
     }
     else {
-        console.log("It's a Tie!");
+        results.textContent = "It's a Tie!";
+        results.style.backgroundColor = "gray"
     }
+    playerScore.textContent = ` Your Score: ${humanScore}`
+    comScore.textContent = `Computer Score: ${computerScore}`
+    if (humanScore === 5 || computerScore === 5) {
+        results.textContent += " — Game Over!";
+        rock_button.disabled = true;
+        paper_button.disabled = true;
+        scissors_button.disabled = true;
+    }
+
+}
+const rock_button = document.querySelector(".rock");
+const paper_button = document.querySelector(".paper");
+const scissors_button = document.querySelector(".scissors");
+const reset_button = document.querySelector(".reset")
+
+rock_button.addEventListener('click', () => playRound("rock", getComputerChoice()));
+paper_button.addEventListener('click', () => playRound("paper", getComputerChoice()));
+scissors_button.addEventListener('click', () => playRound("scissors", getComputerChoice()));
+reset_button.addEventListener('click', function() {
+    humanScore = 0
+    computerScore = 0
+    results.textContent = "Reseted!"
+    results.style.backgroundColor = "gray"
+    playerScore.textContent = "Your Score:"
+    comScore.textContent = "Computer Score:"
+        rock_button.disabled = false;
+        paper_button.disabled = false;
+        scissors_button.disabled = false;
+} )
+
+
 }
 
-    for(let i = 0; i < 5; i++)
-    {
-    let humanChoice = getHumanPrompt();
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-    }
-    console.log("Your Score is " + humanScore);
-    console.log("Computer's Score is " + computerScore);
-}
+
+
 playGame();
